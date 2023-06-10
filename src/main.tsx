@@ -5,7 +5,7 @@ import './index.css'
 import { loadTinyFaceDetectorModel } from 'face-api.js'
 
 const loadApp = async () => {
-  await loadTinyFaceDetectorModel('/models');
+  await loadTinyFaceDetectorModel('./models');
   createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <App />
