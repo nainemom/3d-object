@@ -11,7 +11,6 @@ const WithPermission = ({
   name: PermissionType,
   children?: ReactNode,
 }) => {
-  // const [state, setState] = useState<PermissionStatus['state']>('prompt');
   const [status, setStatus] = useState<PermissionStatus>();
 
   useMount(async () => {
