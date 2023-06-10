@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { TinyFaceDetectorOptions, detectSingleFace } from 'face-api.js';
+import GitHubButton from 'react-github-btn'
 import Camera from './components/Camera';
 import Object from './components/Object';
 import Background from './components/Background';
@@ -55,6 +56,22 @@ function App() {
       <WithPermission name="camera">
         <Camera onStream={handleStream} />
       </WithPermission>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 15,
+          right: 15,
+        }}
+      >
+        <GitHubButton
+          href="https://github.com/nainemom/3d-object"
+          data-size="large"
+          data-show-count="true"
+          aria-label="Star nainemom/3d-object on GitHub"
+        >
+          Star
+        </GitHubButton>
+      </div>
     </div>
   )
 }
