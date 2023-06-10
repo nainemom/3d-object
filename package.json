@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:production": "npm run build -- --base=/3d-object/",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build:production && node ./build/deploy.js"
   },
   "dependencies": {
     "face-api.js": "^0.22.2",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.4.0",
