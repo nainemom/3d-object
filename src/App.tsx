@@ -3,6 +3,7 @@ import { TinyFaceDetectorOptions, detectSingleFace } from 'face-api.js';
 import Camera from './components/Camera';
 import Object from './components/Object';
 import Background from './components/Background';
+import WithPermission from './components/WithPermission';
 
 interface Position {
   x: number,
@@ -51,8 +52,10 @@ function App() {
     >
       <Background angle={lookingAngle} />
       <Object angle={lookingAngle} />
-      <Camera onStream={handleStream} />
-    </div> 
+      <WithPermission name="camera">
+        <Camera onStream={handleStream} />
+      </WithPermission>
+    </div>
   )
 }
 
