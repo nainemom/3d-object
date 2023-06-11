@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react";
+import { useCameraStream } from '../utils/useCameraStream';
 
 const Camera = ({
   onStream,
 }: {
   onStream?: (media: HTMLVideoElement) => unknown | boolean | Promise<boolean>,
 }) => {
-  const isBinded = useRef(false);
   const videoEl = useRef<HTMLVideoElement>(null);
+  const stream = useCameraStream();
 
   const handleStream = useCallback(async (media: HTMLVideoElement) => {
     if (!onStream) return;
@@ -17,22 +18,11 @@ const Camera = ({
   }, [onStream]);
 
   useEffect(() => {
-    if (videoEl.current && !isBinded.current) {
-      navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: {
-          facingMode: '',
-        },
-      }).then((stream) => {
-        if (videoEl.current) {
-          videoEl.current.srcObject = stream;
-        }
-      });
-      isBinded.current = true;
-    }
-  }, [handleStream]);
+    if (!stream?.active || !videoEl.current) return;
+    videoEl.current.srcObject = stream;
+  }, [stream, videoEl]);
   
-  return (
+  return stream?.active && (
     <video
       ref={videoEl}
       autoPlay

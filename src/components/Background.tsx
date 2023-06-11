@@ -9,7 +9,7 @@ const Background = ({
   },
 }) => {
   const cardTranslateYPerc = 0 ;//((angle.y - 50) / 100) * -30;
-  const cardTranslateXPerc = ((angle.x - 50) / 100) * 20;
+  const cardTranslateXPerc = ((angle.x - 50) / 100) * 10;
 
   const cardRotateYDeg = ((angle.x - 50) / 100) * 30;
   const cardRotateXDeg = 0; //((angle.y - 50) / 100) * 20;

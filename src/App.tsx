@@ -4,7 +4,7 @@ import GitHubButton from 'react-github-btn'
 import Camera from './components/Camera';
 import Object from './components/Object';
 import Background from './components/Background';
-import WithPermission from './components/WithPermission';
+import { CameraStreamProvider } from './utils/useCameraStream';
 
 interface Position {
   x: number,
@@ -53,9 +53,9 @@ function App() {
     >
       <Background angle={lookingAngle} />
       <Object angle={lookingAngle} />
-      <WithPermission name="camera">
+      <CameraStreamProvider>
         <Camera onStream={handleStream} />
-      </WithPermission>
+      </CameraStreamProvider>
       <div
         style={{
           position: 'fixed',
