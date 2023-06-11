@@ -9,7 +9,7 @@ const Background = ({
   },
 }) => {
   const robotTranslateYPerc = 0; // ((angle.y - 50) / 100) * 4;
-  const robotTranslateXPerc = ((angle.x - 50) / 100) * 4;
+  const robotTranslateXPerc = ((angle.x - 50) / 100) * 20;
 
   return (
     <img
