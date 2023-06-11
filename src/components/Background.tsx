@@ -31,6 +31,7 @@ const Background = ({
           rotateX(${cardRotateXDeg}deg)
           rotateY(${cardRotateYDeg}deg)
         `,
+        pointerEvents: 'none',
         filter: 'blur(1px)',
         transition: 'transform 0.1s ease-in-out',
       }}

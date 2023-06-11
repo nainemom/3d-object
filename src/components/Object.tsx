@@ -24,6 +24,7 @@ const Object = ({
         display: 'grid',
         placeItems: 'center',
         perspective: 600,
+        pointerEvents: 'none',
       }}
     >
       <div
