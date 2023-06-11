@@ -1,5 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
-import { useMount } from 'react-use';
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 
 type PermissionType = 'camera';
 
@@ -11,19 +10,24 @@ const WithPermission = ({
   name: PermissionType,
   children?: ReactNode,
 }) => {
+  const isBinded = useRef(false);
   const [status, setStatus] = useState<PermissionStatus>();
 
-  useMount(async () => {
-    try {
-      const newStatus = await navigator.permissions.query({ name: name as PermissionName });
-      setStatus(newStatus);
-      newStatus.onchange = () => {
+  useEffect(() => {
+    if (isBinded.current) return;
+    isBinded.current = true;
+    (async () => {
+      try {
+        const newStatus = await navigator.permissions.query({ name: name as PermissionName });
         setStatus(newStatus);
+        newStatus.onchange = () => {
+          setStatus(newStatus);
+        }
+      } catch (_e) {
+        //
       }
-    } catch (_e) {
-      //
-    }
-  });
+    })();
+  }, [isBinded, name, setStatus]);
 
   const handleGetPermission = useCallback(() => navigator.mediaDevices.getUserMedia({
     audio: false,
