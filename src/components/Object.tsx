@@ -9,13 +9,13 @@ const Object = ({
   },
 }) => {
   const cardTranslateYPerc = 0 ;//((angle.y - 50) / 100) * -30;
-  const cardTranslateXPerc = ((angle.x - 50) / 100) * 30;
+  const cardTranslateXPerc = ((angle.x - 50) / 100) * 40;
 
   const cardRotateYDeg = ((angle.x - 50) / 100) * 20;
   const cardRotateXDeg = 0; //((angle.y - 50) / 100) * 20;
 
   const astronautTranslateYPerc = 0; // ((angle.y - 50) / 100) * 10;
-  const astronautTranslateXPerc = ((angle.x - 50) / 100) * 10;
+  const astronautTranslateXPerc = ((angle.x - 50) / 100) * 5;
 
   return (
     <div
@@ -32,11 +32,11 @@ const Object = ({
           position: 'relative',
           width: 300,
           maxWidth: 300,
-          height: 400,
-          borderRadius: 30,
+          height: 300,
+          borderRadius: 150,
           background: `linear-gradient(
-            rgba(255, 30, 0, 0.05),
-            rgba(3, 255, 142, 0.1))`,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.5))`,
           boxShadow: '0 0 100px #000',
           backdropFilter: 'blur(4px)',
           transform: `
