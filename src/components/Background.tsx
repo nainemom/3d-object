@@ -8,8 +8,11 @@ const Background = ({
     y: number,
   },
 }) => {
-  const robotTranslateYPerc = 0; // ((angle.y - 50) / 100) * 4;
-  const robotTranslateXPerc = ((angle.x - 50) / 100) * 20;
+  const cardTranslateYPerc = 0 ;//((angle.y - 50) / 100) * -30;
+  const cardTranslateXPerc = ((angle.x - 50) / 100) * 20;
+
+  const cardRotateYDeg = ((angle.x - 50) / 100) * 30;
+  const cardRotateXDeg = 0; //((angle.y - 50) / 100) * 20;
 
   return (
     <img
@@ -21,9 +24,12 @@ const Background = ({
         width: '120%',
         height: '120%',
         objectFit: 'cover',
+        perspective: 600,
         transform: `
-          translateX(${robotTranslateXPerc}%)
-          translateY(${robotTranslateYPerc}%)
+          translateX(${cardTranslateXPerc}%)
+          translateY(${cardTranslateYPerc}%)
+          rotateX(${cardRotateXDeg}deg)
+          rotateY(${cardRotateYDeg}deg)
         `,
         filter: 'blur(1px)',
         transition: 'transform 0.1s ease-in-out',
