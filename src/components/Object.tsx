@@ -33,6 +33,13 @@ const Object = ({
           width: 300,
           maxWidth: 300,
           height: 300,
+          borderRadius: 150,
+          background: `linear-gradient(
+            rgba(250, 250, 250, 0.2),
+            rgba(0, 0, 0, 0.3)
+          `,
+          boxShadow: '0 0 100px #000',
+          backdropFilter: 'blur(4px)',
           transform: `
             rotateY(${cardRotateYDeg}deg)
             rotateX(${cardRotateXDeg}deg)
