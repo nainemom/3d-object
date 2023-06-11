@@ -25,21 +25,19 @@ const WithPermission = ({
     }
   });
 
-  const handleGetPermission = useCallback(async () => {
-    navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: {
-        facingMode: '',
-      },
-    })
-  }, []);
+  const handleGetPermission = useCallback(() => navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+      facingMode: '',
+    },
+  }), []);
 
 
   useEffect(() => {
     if (status?.state === 'prompt') {
       const result = confirm(`The ${name} permission is needed.`);
       if (result) {
-        handleGetPermission();
+        handleGetPermission().then(() => window.location.reload());
       }
     }
     if (status?.state === 'denied') {
