@@ -3,8 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "email": "nainemom@gmail.com",
+    "name": "Amir Momenian",
+    "url": "https://github.com/nainemom"
+  },
   "scripts": {
     "dev": "vite",
+    "dev:host": "npm run dev -- --https --host",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
