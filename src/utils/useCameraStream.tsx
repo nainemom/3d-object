@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 
 const cameraStream = createContext<MediaStream | undefined>(undefined);
 
@@ -10,7 +10,7 @@ export const CameraStreamProvider = ({
   const [stream, setStream] = useState<MediaStream>();
 
 
-  useEffect(() => {
+  const handleClick = useCallback(() => {
     if (stream?.active) return;
     navigator.mediaDevices.getUserMedia({
       audio: false,
@@ -18,13 +18,33 @@ export const CameraStreamProvider = ({
         facingMode: '',
       },
     }).then(setStream).catch(() => {
-      alert(`This app will not works without camera permission. Please give this permission via browser.`)
+      alert(`TPlease give this permission via website setting in your browser.`)
     });
   }, [stream, setStream]);
 
   return (
     <cameraStream.Provider value={stream}>
-      { children }
+      { stream?.active ? (
+        children
+      ) : (
+        <div
+          style={{
+            textAlign: 'center'
+          }}
+        >
+          <h2
+            style={{
+            marginBottom: 8,
+            }}
+          >This app needs camera permission.</h2>
+          <button
+            style={{
+              padding: 4,
+            }}
+            onClick={handleClick}
+          > Allow Access </button>
+        </div>
+      ) }
     </cameraStream.Provider>
   )
 }

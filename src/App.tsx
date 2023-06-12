@@ -3,7 +3,6 @@ import { TinyFaceDetectorOptions, detectSingleFace } from 'face-api.js';
 import GitHubButton from 'react-github-btn'
 import Camera from './components/Camera';
 import Object from './components/Object';
-import Background from './components/Background';
 import { CameraStreamProvider } from './utils/useCameraStream';
 
 interface Position {
@@ -48,12 +47,10 @@ function App() {
         position: 'relative',
         height: '100%',
         width: '100%',
-        background: 'cyan',
       }}
     >
-      {/* <Background angle={lookingAngle} /> */}
-      <Object angle={lookingAngle} />
       <CameraStreamProvider>
+        <Object angle={lookingAngle} />
         <Camera onStream={handleStream} />
       </CameraStreamProvider>
       <div
@@ -62,13 +59,13 @@ function App() {
           bottom: 15,
           right: 15,
         }}
-      >
+        >
         <GitHubButton
           href="https://github.com/nainemom/3d-object"
           data-size="large"
           data-show-count="true"
           aria-label="Star nainemom/3d-object on GitHub"
-        >
+          >
           Star
         </GitHubButton>
       </div>
