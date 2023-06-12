@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useCallback, useContext, useState } from "react";
 
 const cameraStream = createContext<MediaStream | undefined>(undefined);
 
