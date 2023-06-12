@@ -51,7 +51,7 @@ function App() {
         background: 'cyan',
       }}
     >
-      <Background angle={lookingAngle} />
+      {/* <Background angle={lookingAngle} /> */}
       <Object angle={lookingAngle} />
       <CameraStreamProvider>
         <Camera onStream={handleStream} />

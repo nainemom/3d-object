@@ -4,13 +4,16 @@ import App from './App.tsx'
 import { loadTinyFaceDetectorModel } from 'face-api.js'
 
 const loadApp = async () => {
+  const root = (document.querySelector('#root') as HTMLElement)
   await loadTinyFaceDetectorModel('./models');
-  createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  );
-}
+  createRoot(root).render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>,
+    );
+  }
+  
+  loadApp();
+    
 
-loadApp();
 

@@ -28,7 +28,13 @@ const Camera = ({
       autoPlay
       playsInline
       onPlay={(e) => handleStream(e.target as HTMLVideoElement)}
-      style={{ position: 'fixed', opacity: 0, top: 0, left: 0, }}
+      style={{
+        position: 'fixed',
+        opacity: 0,
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+      }}
     />
   );
 };

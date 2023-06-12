@@ -1,4 +1,7 @@
-import astronaut from '../assets/astronaut.png';
+import { useEffect, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { Box } from './Box';
+import { Environment, OrbitControls, OrbitControlsProps } from '@react-three/drei';
 
 const Object = ({
   angle,
@@ -8,65 +11,29 @@ const Object = ({
     y: number,
   },
 }) => {
-  const cardTranslateYPerc = 0 ;//((angle.y - 50) / 100) * -30;
-  const cardTranslateXPerc = ((angle.x - 50) / 100) * 20;
+  const controls = useRef<OrbitControlsProps>();
 
-  const cardRotateYDeg = ((angle.x - 50) / 100) * 70;
-  const cardRotateXDeg = 0; //((angle.y - 50) / 100) * 20;
-
-  const astronautTranslateYPerc = 0; // ((angle.y - 50) / 100) * 10;
-  const astronautTranslateXPerc = ((angle.x - 50) / 100) * 5;
-
+  useEffect(() => {
+    controls.current?.setAzimuthalAngle?.((angle.x * -1) / 100);
+    controls.current?.setPolarAngle?.(0.5 + (angle.y / 100));
+    controls.current?.update?.();
+  }, [angle]);
   return (
-    <div
-      className="card-container"
-      style={{
-        display: 'grid',
-        placeItems: 'center',
-        perspective: 600,
-        pointerEvents: 'none',
-      }}
-    >
-      <div
-        className="card"
-        style={{
-          position: 'relative',
-          width: 300,
-          maxWidth: 300,
-          height: 300,
-          borderRadius: 150,
-          background: `linear-gradient(
-            rgba(250, 250, 250, 0.2),
-            rgba(0, 0, 0, 0.3)
-          `,
-          boxShadow: '0 0 100px #000',
-          backdropFilter: 'blur(4px)',
-          transform: `
-            rotateY(${cardRotateYDeg}deg)
-            rotateX(${cardRotateXDeg}deg)
-            translateX(${cardTranslateXPerc}%)
-            translateY(${cardTranslateYPerc}%)
-          `,
-          transition: 'transform 0.1s ease-in-out',
-        }
-      }>
-        <img
-          className="astronaut"
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            transform: `
-              translateX(${astronautTranslateXPerc}%)
-              translateY(${astronautTranslateYPerc}%)
-            `,
-            transition: 'transform 0.2s ease-in-out',
-          }}
-          src={astronaut}
+    <>
+      <Canvas>
+        <Environment files='https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/evening_road_01_2k.hdr' ground={{ height: 5, radius: 40, scale: 30 }} />
+        <Box />
+        <OrbitControls
+          minDistance={8}
+          maxDistance={8}
+          minPolarAngle={0.5}
+          maxPolarAngle={1.5}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          /* @ts-ignore */
+          ref={controls}
         />
-      </div>
-    </div>
+      </Canvas>
+    </>
   );
 };
 0
